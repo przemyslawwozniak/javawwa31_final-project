@@ -10,7 +10,8 @@ import pl.sda.javawwa31.moviesrental.usecase.exception.MovieAlreadyExistsInCatal
 
 
 @SpringBootTest
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)    //efekt: usuwa dane z repo pomiedzy testami
+//moge nie czyscic kontekstu jezeli nie wykorzystuje ponownie danych z innych metod testowych
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)    //efekt: usuwa dane z repo pomiedzy testami
 public class AddMovieToCatalogueTest {
 
     @Autowired private AddMovieToCatalogue addMovieToCatalogue;
@@ -34,7 +35,7 @@ public class AddMovieToCatalogueTest {
     void cannot_add_movie_which_already_exists_in_catalogue() throws Exception {
         //given
         Movie movie = new Movie();
-        movie.setTitle("Ogniem i mieczem");
+        movie.setTitle("Avatar");
 
         //when
         addMovieToCatalogue.add(movie);

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import pl.sda.javawwa31.moviesrental.domain.model.Copy;
 import pl.sda.javawwa31.moviesrental.domain.model.Movie;
+import pl.sda.javawwa31.moviesrental.usecase.exception.MovieDoesNotExistInCatalogue;
 
 @SpringBootTest
 public class CreateCopyOfAMovieTest {
@@ -24,12 +25,20 @@ public class CreateCopyOfAMovieTest {
         Copy copy = createCopyOfAMovie.create(movie.getId());
 
         //then
-        Assertions.assertThat(copy.getMovie()).isEqualTo(movie);
+        Assertions.assertThat(copy.getMovie()).isEqualTo(movie);    //mozliwe dzieki prawidlowej implementacji equals()
+        //Assertions.assertThat(copy.getMovie().getId()).isEqualTo(movie.getId());
+        //Assertions.assertThat(copy.getMovie().getTitle()).isEqualTo(movie.getTitle());
     }
 
     @Test
     void cannot_create_a_copy_of_non_existing_movie() {
+        //given
 
+        //when
+
+        //then
+        Assertions.assertThatExceptionOfType(MovieDoesNotExistInCatalogue.class)
+                .isThrownBy(() -> createCopyOfAMovie.create(999L));
     }
 
 }
