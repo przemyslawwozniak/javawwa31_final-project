@@ -12,7 +12,7 @@ import pl.sda.javawwa31.moviesrental.usecase.exception.MovieDoesNotExistInCatalo
 public class CreateCopyOfAMovieTest {
 
     @Autowired private AddMovieToCatalogue addMovieToCatalogue;
-    @Autowired private  CreateCopyOfAMovie createCopyOfAMovie;
+    @Autowired private CreateCopyOfAMovie createCopyOfAMovie;
 
     @Test
     void creates_copy_of_a_given_movie() throws Exception {
